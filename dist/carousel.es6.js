@@ -24,7 +24,8 @@ var Carousel = function Carousel(container, options) {
 		infinite: true,				// infinite scrolling or not
 		display: 1,						// the minimum # of slides to display at a time. If you want to have slides...
 														// "hanging" off outside the currently viewable ones, they'd be included here.
-		disableDragging: false// only use API to navigate
+		disableDragging: false,// only use API to navigate
+		initialSlide: 0		// slide to start
 	};
 
 	// state vars
@@ -73,7 +74,7 @@ Carousel.prototype.init = function init () {
 	if (!this.slideWrap || !this.slides || this.numSlides < this.options.display) { console.log('Carousel: insufficient # slides'); return this.active = false; }
 	if (this.options.infinite) { this._cloneSlides(); }
 
-	this.go(0);		// this adds our slide classes
+	this.go(this.options.initialSlide);		// this adds our slide classes
 
 	// set up Events
 	this._bindings = this._createBindings();
